@@ -1,0 +1,100 @@
+package com.techlab.articulo.repository;
+
+import java.util.ArrayList;
+
+import com.techlab.articulo.interfaces.Identificable;
+
+/**
+ * CONSIGNA DE ESTA CLASE
+ * ------------------------------------------------------------
+ * Esta clase debe ser GENÉRICA.
+ *
+ * Debe modelarse así:
+ * Repositorio<T extends Identificable>
+ *
+ * ¿Qué significa eso?
+ * Que podrá trabajar con distintos tipos de objetos, siempre que esos
+ * objetos tengan código.
+ *
+ * EJEMPLOS DE USO ESPERADOS
+ * ------------------------------------------------------------
+ * - Repositorio<Categoria>
+ * - Repositorio<Articulo>
+ *
+ * ESTA CLASE DEBE GUARDAR LOS DATOS EN MEMORIA
+ * ------------------------------------------------------------
+ * Usando:
+ * - ArrayList<T>
+ *
+ * MÉTODOS MÍNIMOS ESPERADOS
+ * ------------------------------------------------------------
+ * - agregar(T objeto)
+ * - listar()
+ * - buscarPorCodigo(int codigo)
+ * - eliminar(T objeto)
+ * - estaVacio()
+ *
+ * OBJETIVO DIDÁCTICO
+ * ------------------------------------------------------------
+ * Esta clase prepara el terreno para entender luego estructuras como:
+ * JpaRepository<T, ID> en Spring Boot.
+ */
+
+public class Repositorio <T extends Identificable> {
+    private ArrayList <T> lista = new ArrayList<>();
+        // TODO:
+    // Implementar método agregar.
+       public void agregar(T elemento) {
+
+        lista.add(elemento);
+    }
+
+    // TODO:
+    // Implementar método listar.
+       public ArrayList<T> listar() {
+
+        return lista;
+    }
+
+    // TODO:
+    // Implementar método buscarPorCodigo.
+    public T buscarPorCodigo(int codigo) {
+
+        for (T elemento : lista) {
+
+            if (elemento.getCodigo() == codigo) {
+
+                return elemento;
+            }
+        }
+
+        return null;
+    }
+
+
+    // TODO:
+    // Implementar método eliminar.
+   
+    public boolean eliminar(int codigo) {
+
+        T elemento = buscarPorCodigo(codigo);
+
+        if (elemento != null) {
+
+            lista.remove(elemento);
+
+            return true;
+        }
+
+        return false;
+    } 
+
+    // TODO:
+    // Implementar método estaVacio.
+
+    public boolean estaVacio() {
+
+        return lista.isEmpty();
+    }
+
+}
